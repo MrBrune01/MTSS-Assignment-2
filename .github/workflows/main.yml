@@ -1,7 +1,6 @@
-
 on: ["push", "pull_request"]
 
-name: Code coverage test
+name: Build with Maven
 
 jobs:
 
@@ -18,14 +17,14 @@ jobs:
         java-version: 8.0.332+9
         cache: 'maven'
       
-    - name: 🏗️ Build with Maven
-      run: mvn clean test compile checkstyle:check jacoco:report
+    - name: :construction_site: Build with Maven
+      run: mvn test jacoco:report
     
-    - name: 🛠 Coveralls Coverage Report Setup
-      run: sed -i.bak 's/yourcoverallsprojectrepositorytoken/${{ secrets.COVERALL_REPO_TOKEN }}/g' pom.xml    
-    - name: 🚀 Coveralls Coverage Report Submission
+    - name: :gear: Coveralls Token Setup
+      run: sed -i.bak 's/COVERALLSTOKEN/${{ secrets.COVERALL_REPO_TOKEN }}/g' pom.xml    
+    - name: :mailbox_with_no_mail: Coveralls Coverage Report Submission
       run: mvn coveralls:report
     
-    - name: 🧹 Cleanup Repository Token
+    - name: :broom: Cleanup Token
       if: ${{ always() }}
       run: if [ -f "pom.xml.bak" ]; then mv pom.xml.bak pom.xml; fi
