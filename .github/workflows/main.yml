@@ -17,14 +17,14 @@ jobs:
         java-version: 8.0.332+9
         cache: 'maven'
       
-    - name: :construction_site: Build with Maven
+    - name: 🏗️ Build with Maven
       run: mvn test jacoco:report
     
-    - name: :gear: Coveralls Token Setup
+    - name: ⚙️ Coveralls Token Setup
       run: sed -i.bak 's/COVERALLSTOKEN/${{ secrets.COVERALL_REPO_TOKEN }}/g' pom.xml    
-    - name: :mailbox_with_no_mail: Coveralls Coverage Report Submission
+    - name: 📭 Coveralls Coverage Report Submission
       run: mvn coveralls:report
     
-    - name: :broom: Cleanup Token
+    - name: 🧹 Cleanup Token
       if: ${{ always() }}
       run: if [ -f "pom.xml.bak" ]; then mv pom.xml.bak pom.xml; fi
