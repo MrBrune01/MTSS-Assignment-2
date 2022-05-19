@@ -4,12 +4,13 @@
           "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name = "Checker">
-  <module name="LineLength">
-    <property name="max" value="120"/>
-  </module>
-  <module name="TreeWalker">
+	<module name="TreeWalker">
+		<module name="LineLength">
+  			<property name="max" value="120"/>
+		</module>
         <module name="BooleanExpressionComplexity"/>
         <module name="CyclomaticComplexity"/>
+        <module name="LineLength"/>
         <module name="MethodLength"/>
         <module name="EmptyCatchBlock"/>
         <module name="AvoidStarImport"/>
@@ -19,6 +20,6 @@
         <module name="FileLength"/>
         <module name="FileTabCharacter"/>
     <module name="Header">
-      <property name="headerFile" value="config/matricole.header"/>
+      <property name="headerFile" value="matricole.header"/>
     </module>
 </module>
